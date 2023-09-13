@@ -7,12 +7,12 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
-build_property.RootNamespace = FM.Framework.Web.Host
-build_property.RootNamespace = FM.Framework.Web.Host
+build_property.RootNamespace = FM.Framework
+build_property.RootNamespace = FM.Framework
 build_property.ProjectDir = D:\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Web.Host\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = D:\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Web.Host
 build_property._RazorSourceGeneratorDebug = 
 

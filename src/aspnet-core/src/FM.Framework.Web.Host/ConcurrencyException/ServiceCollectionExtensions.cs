@@ -3,6 +3,8 @@ using FM.Framework.Web.Host.ConcurrencyException;
 
 using FMFramework.AbpEX;
 
+using FMFranework.AbpEx;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 

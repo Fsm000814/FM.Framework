@@ -26,13 +26,13 @@ namespace FMFranework.AbpEx
         //
         // 类型参数:
         //   TStartupModule:
-        public static IServiceProvider AddGCTAbpEx<TStartupModule>(this IServiceCollection services, Action<FMFraneworkAbpExBootstrapperOptions> optionsAction = null, bool removeConventionalInterceptors = true) where TStartupModule : AbpModule
+        public static IServiceProvider AddFMFrameworkAbpEx<TStartupModule>(this IServiceCollection services, Action<FMFrameworkAbpExBootstrapperOptions> optionsAction = null, bool removeConventionalInterceptors = true) where TStartupModule : AbpModule
         {
-            FMFraneworkAbpExBootstrapperOptions gCTAbpExBootstrapperOptions = new FMFraneworkAbpExBootstrapperOptions();
-            optionsAction?.Invoke(gCTAbpExBootstrapperOptions);
-            services.AddAbpWithoutCreatingServiceProvider<TStartupModule>(gCTAbpExBootstrapperOptions.AbpOptionsAction, removeConventionalInterceptors);
+            FMFrameworkAbpExBootstrapperOptions fMFraneworkAbp = new FMFrameworkAbpExBootstrapperOptions();
+            optionsAction?.Invoke(fMFraneworkAbp);
+            services.AddAbpWithoutCreatingServiceProvider<TStartupModule>(fMFraneworkAbp.AbpOptionsAction, removeConventionalInterceptors);
             AbpBootstrapper singletonServiceOrNull = services.GetSingletonServiceOrNull<AbpBootstrapper>();
-            gCTAbpExBootstrapperOptions?.AbpConfigureAspNetCoreAfter?.Invoke(services);
+            fMFraneworkAbp?.AbpConfigureAspNetCoreAfter?.Invoke(services);
             return WindsorRegistrationHelper.CreateServiceProvider(singletonServiceOrNull.IocManager.IocContainer, services);
         }
     }

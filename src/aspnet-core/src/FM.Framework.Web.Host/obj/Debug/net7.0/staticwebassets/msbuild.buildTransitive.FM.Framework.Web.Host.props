@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\FM.Framework.Web.Host.props" />
+</Project>

@@ -6,33 +6,30 @@ using System;
 using FMFramework.AbpEX;
 using Abp.AspNetCore;
 
-namespace FMFranework.AbpEx
+namespace FMFramework.AbpEx
 {
     public static class FMFraneworkAbpExServiceCollectionExtensions
     {
-        //
-        // 摘要:
-        //     将 GCTAbpEx 集成到 Asp.Net Core
-        //
-        // 参数:
-        //   services:
-        //     服务注册器
-        //
-        //   optionsAction:
-        //     配置选项
-        //
-        //   removeConventionalInterceptors:
-        //     移除常规的拦截器
-        //
-        // 类型参数:
-        //   TStartupModule:
-        public static IServiceProvider AddGCTAbpEx<TStartupModule>(this IServiceCollection services, Action<FMFraneworkAbpExBootstrapperOptions> optionsAction = null, bool removeConventionalInterceptors = true) where TStartupModule : AbpModule
+        /// <summary>
+        /// 将 FMFraneworkAbpEx 集成到 Asp.Net Core
+        /// 封装了添加FMFrameworkAbpEx服务的逻辑，并在内部进行了一些自定义配置，
+        /// 例如添加Abp服务和执行AbpConfigureAspNetCoreAfter委托中的操作。
+        /// </summary>
+        /// <typeparam name="TStartupModule"></typeparam>
+        /// <param name="services">服务注册器</param>
+        /// <param name="optionsAction">配置选项</param>
+        /// <param name="removeConventionalInterceptors">移除常规的拦截器</param>
+        /// <returns>IServiceProvider实例</returns>
+        public static IServiceProvider AddFMFrameworkAbpEx<TStartupModule>(this IServiceCollection services, Action<FMFrameworkAbpExBootstrapperOptions> optionsAction = null, bool removeConventionalInterceptors = true) where TStartupModule : AbpModule
         {
-            FMFraneworkAbpExBootstrapperOptions gCTAbpExBootstrapperOptions = new FMFraneworkAbpExBootstrapperOptions();
-            optionsAction?.Invoke(gCTAbpExBootstrapperOptions);
-            services.AddAbpWithoutCreatingServiceProvider<TStartupModule>(gCTAbpExBootstrapperOptions.AbpOptionsAction, removeConventionalInterceptors);
+            //对FMFrameworkAbpExBootstrapperOptions进行自定义配置
+            FMFrameworkAbpExBootstrapperOptions fMFraneworkAbp = new FMFrameworkAbpExBootstrapperOptions();
+            //依赖注入fMFraneworkAbp
+            optionsAction?.Invoke(fMFraneworkAbp);
+            //
+            services.AddAbpWithoutCreatingServiceProvider<TStartupModule>(fMFraneworkAbp.AbpOptionsAction, removeConventionalInterceptors);
             AbpBootstrapper singletonServiceOrNull = services.GetSingletonServiceOrNull<AbpBootstrapper>();
-            gCTAbpExBootstrapperOptions?.AbpConfigureAspNetCoreAfter?.Invoke(services);
+            fMFraneworkAbp?.AbpConfigureAspNetCoreAfter?.Invoke(services);
             return WindsorRegistrationHelper.CreateServiceProvider(singletonServiceOrNull.IocManager.IocContainer, services);
         }
     }

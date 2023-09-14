@@ -3,16 +3,11 @@ using Abp.Domain.Uow;
 using Abp.Localization;
 using Abp.UI;
 using FM.Framework.Core.App;
-
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FM.Framework.Web.Host.ConcurrencyException
 {

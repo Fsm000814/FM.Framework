@@ -4,7 +4,7 @@ using System;
 
 namespace FMFramework.AbpEX
 {
-    public class FMFraneworkAbpExBootstrapperOptions
+    public class FMFrameworkAbpExBootstrapperOptions
     {
         //
         // 摘要:

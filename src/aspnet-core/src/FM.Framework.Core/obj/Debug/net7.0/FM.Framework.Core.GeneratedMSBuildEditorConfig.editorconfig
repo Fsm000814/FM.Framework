@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FM.Framework.Core
-build_property.ProjectDir = D:\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\
+build_property.ProjectDir = D:\Git\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\

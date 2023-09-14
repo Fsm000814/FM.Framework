@@ -2,15 +2,11 @@
 using Abp.Configuration.Startup;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
-
 using FM.Framework.Core;
 using FM.Framework.Web.Core.Token;
-
 using Microsoft.AspNetCore.Hosting;
-
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-
 using System;
 
 namespace FM.Framework.Startup

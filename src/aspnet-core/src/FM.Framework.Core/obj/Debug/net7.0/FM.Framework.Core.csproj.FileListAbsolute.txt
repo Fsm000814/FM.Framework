@@ -10,3 +10,15 @@ D:\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\obj\Debug\net7.0\FM
 D:\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\obj\Debug\net7.0\refint\FM.Framework.Core.dll
 D:\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\obj\Debug\net7.0\FM.Framework.Core.pdb
 D:\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\obj\Debug\net7.0\ref\FM.Framework.Core.dll
+D:\Git\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\bin\Debug\net7.0\FM.Framework.Core.deps.json
+D:\Git\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\bin\Debug\net7.0\FM.Framework.Core.dll
+D:\Git\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\bin\Debug\net7.0\FM.Framework.Core.pdb
+D:\Git\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\obj\Debug\net7.0\FM.Framework.Core.csproj.AssemblyReference.cache
+D:\Git\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\obj\Debug\net7.0\FM.Framework.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Git\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\obj\Debug\net7.0\FM.Framework.Core.AssemblyInfoInputs.cache
+D:\Git\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\obj\Debug\net7.0\FM.Framework.Core.AssemblyInfo.cs
+D:\Git\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\obj\Debug\net7.0\FM.Framework.Core.csproj.CoreCompileInputs.cache
+D:\Git\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\obj\Debug\net7.0\FM.Framework.Core.dll
+D:\Git\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\obj\Debug\net7.0\refint\FM.Framework.Core.dll
+D:\Git\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\obj\Debug\net7.0\FM.Framework.Core.pdb
+D:\Git\GitHub\FM.Framework\src\aspnet-core\src\FM.Framework.Core\obj\Debug\net7.0\ref\FM.Framework.Core.dll

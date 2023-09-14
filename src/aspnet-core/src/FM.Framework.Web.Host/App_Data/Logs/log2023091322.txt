@@ -1,0 +1,4 @@
+13-09-2023 22:26:10 [WRN] [] Overriding address(es) '"http://localhost:6299/"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+13-09-2023 22:33:38 [WRN] [] Overriding address(es) '"http://localhost:6299/"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+13-09-2023 22:34:11 [WRN] [] Overriding address(es) '"http://localhost:6298/"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+13-09-2023 22:34:45 [WRN] [] Overriding address(es) '"http://localhost:27557/"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.

@@ -56,13 +56,13 @@ namespace FM.FrameWork.Web.Host.Startup
 
             services.AddSignalR();
 
-            // Configure CORS for angular2 UI
+            // 为UI配置CORS
             services.AddCors(
                 options => options.AddPolicy(
                     _defaultCorsPolicyName,
                     builder => builder
                         .WithOrigins(
-                            // App:CorsOrigins in appsettings.json can contain more than one address separated by comma.
+                            // 应用程序：json中的CorsOrigins可以包含多个以逗号分隔的地址。
                             _appConfiguration["App:CorsOrigins"]
                                 .Split(",", StringSplitOptions.RemoveEmptyEntries)
                                 .Select(o => o.RemovePostFix("/"))
@@ -74,12 +74,12 @@ namespace FM.FrameWork.Web.Host.Startup
                 )
             );
 
-            // Swagger - Enable this line and the related lines in Configure method to enable swagger UI
+            // Swagger-启用此行和Configure方法中的相关行以启用swagger UI
             ConfigureSwagger(services);
 
-            // Configure Abp and Dependency Injection
+            //配置ABP和依赖项注入
             services.AddAbpWithoutCreatingServiceProvider<FrameWorkWebHostModule>(
-                // Configure Log4Net logging
+                // 配置日志4 Net日志记录
                 options => options.IocManager.IocContainer.AddFacility<LoggingFacility>(
                     f => f.UseAbpLog4Net().WithConfig(_hostingEnvironment.IsDevelopment()
                         ? "log4net.config"
@@ -91,9 +91,9 @@ namespace FM.FrameWork.Web.Host.Startup
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
+            app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // 初始化ABP框架。
 
-            app.UseCors(_defaultCorsPolicyName); // Enable CORS!
+            app.UseCors(_defaultCorsPolicyName); //启用CORS！
 
             app.UseStaticFiles();
 
@@ -111,17 +111,17 @@ namespace FM.FrameWork.Web.Host.Startup
                 endpoints.MapControllerRoute("defaultWithArea", "{area}/{controller=Home}/{action=Index}/{id?}");
             });
 
-            // Enable middleware to serve generated Swagger as a JSON endpoint
+            // 使中间件能够将生成的Swagger作为JSON端点提供服务
             app.UseSwagger(c => { c.RouteTemplate = "swagger/{documentName}/swagger.json"; });
 
-            // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
+            // 使中间件能够提供swagger-ui资产(HTML、JS、CSS等)
             app.UseSwaggerUI(options =>
             {
-                // specifying the Swagger JSON endpoint.
+                // 指定Swagger JSON端点。
                 options.SwaggerEndpoint($"/swagger/{_apiVersion}/swagger.json", $"FrameWork API {_apiVersion}");
                 options.IndexStream = () => Assembly.GetExecutingAssembly()
                     .GetManifestResourceStream("FM.FrameWork.Web.Host.wwwroot.swagger.ui.index.html");
-                options.DisplayRequestDuration(); // Controls the display of the request duration (in milliseconds) for "Try it out" requests.  
+                options.DisplayRequestDuration(); // 控制“Try it out”请求的请求持续时间（毫秒）的显示。
             }); // URL: /swagger
         }
         
@@ -134,7 +134,8 @@ namespace FM.FrameWork.Web.Host.Startup
                     Version = _apiVersion,
                     Title = "FrameWork API",
                     Description = "FrameWork",
-                    // uncomment if needed TermsOfService = new Uri("https://example.com/terms"),
+                    //TermsOfService = new Uri("https://example.com/terms"),
+
                     Contact = new OpenApiContact
                     {
                         Name = "FrameWork",
@@ -149,7 +150,7 @@ namespace FM.FrameWork.Web.Host.Startup
                 });
                 options.DocInclusionPredicate((docName, description) => true);
 
-                // Define the BearerAuth scheme that's in use
+                // 定义正在使用的BearerAuth方案
                 options.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme()
                 {
                     Description =
@@ -159,7 +160,7 @@ namespace FM.FrameWork.Web.Host.Startup
                     Type = SecuritySchemeType.ApiKey
                 });
 
-                //add summaries to swagger
+                //向swagger添加摘要
                 bool canShowSummaries = _appConfiguration.GetValue<bool>("Swagger:ShowSummaries");
                 if (canShowSummaries)
                 {

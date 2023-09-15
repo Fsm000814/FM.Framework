@@ -56,7 +56,7 @@ namespace FM.FrameWork.Web.Host.Startup
 
             services.AddSignalR();
 
-            // Configure CORS for angular2 UI
+            // 为angular2 UI配置CORS
             services.AddCors(
                 options => options.AddPolicy(
                     _defaultCorsPolicyName,

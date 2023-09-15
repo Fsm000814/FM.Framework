@@ -65,14 +65,11 @@
     <text name="DisplayName">显示名</text>
     <text name="Description">描述</text>
     <text name="IsStatic">是否内置</text>
-
     <text name="All">全部</text>
     <text name="Actived">启用</text>
     <text name="NoActive">未启用</text>
-    
     <text name="Yes">是</text>
     <text name="No">否</text>
-    
     <text name="Cancel">取消</text>
     <text name="OK">确定</text>
     <text name="CreateNewRole">创建新角色</text>
@@ -80,7 +77,6 @@
     <text name="RolePermission">角色权限</text>
     <text name="EditRole">编辑角色</text>
     <text name="DeleteRolesConfirm">确认删除该角色？</text>
-
     <text name="CreateNewUser">创建新用户</text>
     <text name="UserDetails">用户详情</text>
     <text name="UserRoles">用户角色</text>
@@ -89,7 +85,6 @@
     <text name="Surname">姓</text>
     <text name="DeleteUserConfirm">确认删除该用户？</text>
     <text name="EditUser">编辑用户</text>
-
     <text name="CreateNewTenant">创建新租户</text>
     <text name="DatabaseConnectionString">数据库连接</text>
     <text name="AdminEmailAddress">管理员邮箱地址</text>
@@ -97,7 +92,6 @@
     <text name="DeleteTenantConfirm">确认删除该租户？</text>
     <text name="EditTenant">编辑租户</text>
     <text name="SearchWithThreeDot">搜索...</text>
-    
   </texts>
 </localizationDictionary>
 

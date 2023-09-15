@@ -60,17 +60,18 @@ namespace FM.FrameWork.Web.Host.Startup
                 !context.HttpContext.Request.Path.Value.StartsWith("/signalr"))
             {
                 // We are just looking for signalr clients
+                //我们只是在找signalr的客户端
                 return Task.CompletedTask;
             }
 
             var qsAuthToken = context.HttpContext.Request.Query["enc_auth_token"].FirstOrDefault();
             if (qsAuthToken == null)
             {
-                // Cookie value does not matches to querystring value
+                // Cookie值与查询字符串值不匹配
                 return Task.CompletedTask;
             }
 
-            // Set auth token from cookie
+            // 从cookie设置验证令牌
             context.Token = SimpleStringCipher.Instance.Decrypt(qsAuthToken);
             return Task.CompletedTask;
         }

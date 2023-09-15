@@ -76,12 +76,12 @@ namespace FM.FrameWork.EntityFrameworkCore.Seed.Host
                     UserName = AbpUserBase.AdminUserName,
                     Name = "admin",
                     Surname = "admin",
-                    EmailAddress = "admin@aspnetboilerplate.com",
+                    EmailAddress = "1002784867@qq.com",
                     IsEmailConfirmed = true,
                     IsActive = true
                 };
 
-                user.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(user, "123qwe");
+                user.Password = new PasswordHasher<User>(new OptionsWrapper<PasswordHasherOptions>(new PasswordHasherOptions())).HashPassword(user, "bb123456");
                 user.SetNormalizedNames();
 
                 adminUserForHost = _context.Users.Add(user).Entity;

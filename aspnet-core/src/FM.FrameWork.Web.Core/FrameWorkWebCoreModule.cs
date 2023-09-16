@@ -36,7 +36,7 @@ namespace FM.FrameWork
         public override void PreInitialize()
         {
             Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(
-                FrameWorkConsts.ConnectionStringName
+                FMFrameWorkConsts.ConnectionStringName
             );
 
             // Use database for language management

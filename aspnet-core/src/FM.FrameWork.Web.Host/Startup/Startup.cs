@@ -1,25 +1,32 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
+﻿using Abp.AspNetCore;
+using Abp.AspNetCore.Mvc.Antiforgery;
+using Abp.AspNetCore.SignalR.Hubs;
+using Abp.Castle.Logging.Log4Net;
+using Abp.Dependency;
+using Abp.Extensions;
+using Abp.Json;
+
+using Castle.Facilities.Logging;
+using Castle.Services.Logging.SerilogIntegration;
+using Serilog;
+using FM.FrameWork.Configuration;
+using FM.FrameWork.Identity;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Castle.Facilities.Logging;
-using Abp.AspNetCore;
-using Abp.AspNetCore.Mvc.Antiforgery;
-using Abp.Castle.Logging.Log4Net;
-using Abp.Extensions;
-using FM.FrameWork.Configuration;
-using FM.FrameWork.Identity;
-using Abp.AspNetCore.SignalR.Hubs;
-using Abp.Dependency;
-using Abp.Json;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+
 using Newtonsoft.Json.Serialization;
+
+using System;
 using System.IO;
+using System.Linq;
+using System.Reflection;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FM.FrameWork.Web.Host.Startup
 {
@@ -29,16 +36,38 @@ namespace FM.FrameWork.Web.Host.Startup
 
         private const string _apiVersion = "v1";
 
-        private readonly IConfigurationRoot _appConfiguration;
-        private readonly IWebHostEnvironment _hostingEnvironment;
+        private IConfigurationRoot _appConfiguration;
+        private readonly IWebHostEnvironment _env;
 
         public Startup(IWebHostEnvironment env)
         {
-            _hostingEnvironment = env;
+            _env = env;
             _appConfiguration = env.GetAppConfiguration();
+            InitWebConsts();
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        /// <summary>
+        /// 配置一些中间件，参照ZD的提交记录
+        /// </summary>
+        private void InitWebConsts()
+        {
+            //WebConsts.HangfireDashboardEnabled = Configuration.GetValue<bool>("App:HangfireDashboardEnabled");
+
+            //MedProWebConsts.MinioConfig.IsEnabled = Configuration.GetValue<bool>("App:FileManagement:Minio:IsEnabled");
+            //MedProWebConsts.MinioConfig.AccessKey = Configuration["App:FileManagement:Minio:AccessKey"];
+            //MedProWebConsts.MinioConfig.SecretKey = Configuration["App:FileManagement:Minio:SecretKey"];
+            //MedProWebConsts.MinioConfig.Endpoint = Configuration["App:FileManagement:Minio:Endpoint"];
+            //MedProWebConsts.MinioConfig.BucketName = Configuration["App:FileManagement:Minio:BucketName"];
+            //Console.WriteLine(
+            //    $"MedProWebConsts.MinioConfig{MedProWebConsts.MinioConfig.IsEnabled},{MedProWebConsts.MinioConfig.Endpoint}");
+            //MedProWebConsts.RedisDatabaseId = Configuration.GetValue<int>("Cache:Redis:DatabaseId");
+            //MedProWebConsts.RedisConnectionStr = Configuration["Cache:Redis:ConnectionString"];
+            //MedProWebConsts.SignalRDatabaseId = Configuration.GetValue<int>("Cache:Redis:SignalRDatabaseId");
+            //MedProWebConsts.ConnectionSignalRString = Configuration["Cache:Redis:ConnectionSignalRString"];
+            //AppVersionHelper.Version = Configuration["App:Version"];
+        }
+
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             //MVC
             services.AddControllersWithViews(
@@ -78,18 +107,40 @@ namespace FM.FrameWork.Web.Host.Startup
             ConfigureSwagger(services);
 
             //配置ABP和依赖项注入
-            services.AddAbpWithoutCreatingServiceProvider<FrameWorkWebHostModule>(
-                // 配置日志4 Net日志记录
-                options => options.IocManager.IocContainer.AddFacility<LoggingFacility>(
-                    f => f.UseAbpLog4Net().WithConfig(_hostingEnvironment.IsDevelopment()
-                        ? "log4net.config"
-                        : "log4net.Production.config"
-                    )
-                )
-            );
+            //services.AddAbpWithoutCreatingServiceProvider<FrameWorkWebHostModule>(
+            //    // 配置日志4 Net日志记录
+            //    //options => options.IocManager.IocContainer.AddFacility<LoggingFacility>(
+            //    //     //f => f.UseAbpLog4Net().WithConfig(_hostingEnvironment.IsDevelopment()
+            //    //     //    ? "log4net.config"
+            //    //     //    : "log4net.Production.config"
+            //    //     //)
+            //    //     f =>
+            //    //     {
+            //    //         f.LogUsing(new SerilogFactory(Log.Logger));
+            //    //     }
+            //);
+            return services.AddFMFrameWorkAbp<FrameWorkWebHostModule>(options =>
+            {
+                options.AbpOptionsAction = (abpOptions) =>
+                {
+                    abpOptions.IocManager.IocContainer.AddFacility<LoggingFacility>(f =>
+                    {
+                        f.LogUsing(new SerilogFactory(Log.Logger));
+                    });
+                };
+
+                options.AbpConfigureAspNetCoreAfter = (s) =>
+                {
+                    s.Configure<MvcOptions>(mvcOptions =>
+                    {
+                        mvcOptions.AddTrackExceptionFilter();
+                    });
+                };
+            }
+           );
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app)
         {
             app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // 初始化ABP框架。
 
@@ -103,7 +154,7 @@ namespace FM.FrameWork.Web.Host.Startup
             app.UseAuthorization();
 
             app.UseAbpRequestLocalization();
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<AbpCommonHub>("/signalr");
@@ -124,7 +175,7 @@ namespace FM.FrameWork.Web.Host.Startup
                 options.DisplayRequestDuration(); // 控制“Try it out”请求的请求持续时间（毫秒）的显示。
             }); // URL: /swagger
         }
-        
+
         private void ConfigureSwagger(IServiceCollection services)
         {
             services.AddSwaggerGen(options =>

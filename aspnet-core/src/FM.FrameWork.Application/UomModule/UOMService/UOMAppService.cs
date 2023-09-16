@@ -19,6 +19,7 @@ using FM.FrameWork.Extenions;
 using Abp.Authorization;
 using FM.FrameWork.Authorization;
 using Abp.Auditing;
+using Castle.Core.Logging;
 
 namespace FM.FrameWork.UomModule.UOMService
 {
@@ -48,7 +49,6 @@ namespace FM.FrameWork.UomModule.UOMService
         {
             var query = _uOMManager.QueryAsNoTracking
                 .WhereIf(!input.FilterText.IsNullOrWhiteSpace(), a => a.UOMName.Contains(input.FilterText));
-
             var totalCount = await query.CountAsync();
             var totalList = await query
                 .Select(x => new NdoDto { Id = x.Id, Name = x.UOMName, CreationTime = x.CreationTime })
@@ -184,7 +184,6 @@ namespace FM.FrameWork.UomModule.UOMService
         protected virtual async Task<Guid> Create(UomEditDto input)
         {
             // 新增前的逻辑判断，是否允许新增，到领域服务中进行完善，不再这里进行判断，原因是为了复用。
-
             var entity = ObjectMapper.Map<UOM>(input);
             //调用领域服务
             entity = await _uOMManager.CreateNdo(entity);

@@ -21,7 +21,7 @@ namespace FM.FrameWork.EntityFrameworkCore
              */
             var configuration = AppConfigurations.Get(WebContentDirectoryFinder.CalculateContentRootFolder());
 
-            FrameWorkDbContextConfigurer.Configure(builder, configuration.GetConnectionString(FrameWorkConsts.ConnectionStringName));
+            FrameWorkDbContextConfigurer.Configure(builder, configuration.GetConnectionString(FMFrameWorkConsts.ConnectionStringName));
 
             return new FrameWorkDbContext(builder.Options);
         }

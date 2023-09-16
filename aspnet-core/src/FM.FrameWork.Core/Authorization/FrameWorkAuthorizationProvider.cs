@@ -16,7 +16,7 @@ namespace FM.FrameWork.Authorization
 
         private static ILocalizableString L(string name)
         {
-            return new LocalizableString(name, FrameWorkConsts.LocalizationSourceName);
+            return new LocalizableString(name, FMFrameWorkConsts.LocalizationSourceName);
         }
     }
 }

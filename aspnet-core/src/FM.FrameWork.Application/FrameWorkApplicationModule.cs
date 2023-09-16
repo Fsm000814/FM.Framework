@@ -28,6 +28,7 @@ namespace FM.FrameWork
                 // Scan the assembly for classes which inherit from AutoMapper.Profile
                 cfg => cfg.AddMaps(thisAssembly)
             );
+            Configuration.Auditing.IsEnabled = false;
         }
         private void ConfigureAutoMapper()
         {

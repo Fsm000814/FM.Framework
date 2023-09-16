@@ -14,7 +14,7 @@ namespace FM.FrameWork.EntityFrameworkCore.Seed.Host
 
         private static List<ApplicationLanguage> GetInitialLanguages()
         {
-            var tenantId = FrameWorkConsts.MultiTenancyEnabled ? null : (int?)MultiTenancyConsts.DefaultTenantId;
+            var tenantId = FMFrameWorkConsts.MultiTenancyEnabled ? null : (int?)MultiTenancyConsts.DefaultTenantId;
             return new List<ApplicationLanguage>
             {
                 new ApplicationLanguage(tenantId, "en", "English", "famfamfam-flags us"),

@@ -2,9 +2,9 @@
 
 namespace FM.FrameWork
 {
-    public class FrameWorkConsts
+    public class FMFrameWorkConsts
     {
-        public const string LocalizationSourceName = "FrameWork";
+        public const string LocalizationSourceName = "FMFrameWork";
 
         public const string ConnectionStringName = "Default";
 

@@ -10,7 +10,7 @@ namespace FM.FrameWork.Localization
         public static void Configure(ILocalizationConfiguration localizationConfiguration)
         {
             localizationConfiguration.Sources.Add(
-                new DictionaryBasedLocalizationSource(FrameWorkConsts.LocalizationSourceName,
+                new DictionaryBasedLocalizationSource(FMFrameWorkConsts.LocalizationSourceName,
                     new XmlEmbeddedFileLocalizationDictionaryProvider(
                         typeof(FrameWorkLocalizationConfigurer).GetAssembly(),
                         "FM.FrameWork.Localization.SourceFiles"

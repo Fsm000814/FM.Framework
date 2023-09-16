@@ -10,7 +10,7 @@ namespace FM.FrameWork.Authorization
     {
         public AbpLoginResultTypeHelper()
         {
-            LocalizationSourceName = FrameWorkConsts.LocalizationSourceName;
+            LocalizationSourceName = FMFrameWorkConsts.LocalizationSourceName;
         }
 
         public Exception CreateExceptionForFailedLoginAttempt(AbpLoginResultType result, string usernameOrEmailAddress, string tenancyName)

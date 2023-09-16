@@ -20,7 +20,7 @@ namespace FM.FrameWork.EntityFrameworkCore.Seed.Host
         {
             int? tenantId = null;
 
-            if (FrameWorkConsts.MultiTenancyEnabled == false)
+            if (FMFrameWorkConsts.MultiTenancyEnabled == false)
             {
                 tenantId = MultiTenancyConsts.DefaultTenantId;
             }

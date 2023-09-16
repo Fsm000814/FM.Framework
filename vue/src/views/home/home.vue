@@ -1,12 +1,10 @@
 <template>
-    <div>
-        <Card dis-hover></Card>
-    </div>
+  <div>
+    <Card dis-hover> hello </Card>
+  </div>
 </template>
 <script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
-  
-})
+import Vue from "vue";
+export default Vue.extend({});
 </script>
 

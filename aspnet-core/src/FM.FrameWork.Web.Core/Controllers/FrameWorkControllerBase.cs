@@ -8,7 +8,7 @@ namespace FM.FrameWork.Controllers
     {
         protected FrameWorkControllerBase()
         {
-            LocalizationSourceName = FrameWorkConsts.LocalizationSourceName;
+            LocalizationSourceName = FMFrameWorkConsts.LocalizationSourceName;
         }
 
         protected void CheckErrors(IdentityResult identityResult)

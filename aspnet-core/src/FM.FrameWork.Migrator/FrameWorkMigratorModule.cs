@@ -26,7 +26,7 @@ namespace FM.FrameWork.Migrator
         public override void PreInitialize()
         {
             Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(
-                FrameWorkConsts.ConnectionStringName
+                FMFrameWorkConsts.ConnectionStringName
             );
 
             Configuration.BackgroundJobs.IsJobExecutionEnabled = false;

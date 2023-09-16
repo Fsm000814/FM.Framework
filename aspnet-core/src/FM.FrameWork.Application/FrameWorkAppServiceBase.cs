@@ -32,7 +32,7 @@ namespace FM.FrameWork
 
         protected FrameWorkAppServiceBase()
         {
-            LocalizationSourceName = FrameWorkConsts.LocalizationSourceName;
+            LocalizationSourceName = FMFrameWorkConsts.LocalizationSourceName;
         }
 
         /// <summary>

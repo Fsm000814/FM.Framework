@@ -32,7 +32,7 @@ namespace FM.FrameWork
             FrameWorkLocalizationConfigurer.Configure(Configuration.Localization);
 
             // Enable this line to create a multi-tenant application.
-            Configuration.MultiTenancy.IsEnabled = FrameWorkConsts.MultiTenancyEnabled;
+            Configuration.MultiTenancy.IsEnabled = FMFrameWorkConsts.MultiTenancyEnabled;
 
             // Configure roles
             AppRoleConfig.Configure(Configuration.Modules.Zero().RoleManagement);
@@ -41,8 +41,8 @@ namespace FM.FrameWork
             
             Configuration.Localization.Languages.Add(new LanguageInfo("fa", "فارسی", "famfamfam-flags ir"));
             
-            Configuration.Settings.SettingEncryptionConfiguration.DefaultPassPhrase = FrameWorkConsts.DefaultPassPhrase;
-            SimpleStringCipher.DefaultPassPhrase = FrameWorkConsts.DefaultPassPhrase;
+            Configuration.Settings.SettingEncryptionConfiguration.DefaultPassPhrase = FMFrameWorkConsts.DefaultPassPhrase;
+            SimpleStringCipher.DefaultPassPhrase = FMFrameWorkConsts.DefaultPassPhrase;
 
             IocManager.Register(typeof(IFMFrameWorkLazy<>), typeof(FMFrameWorkLazy<>), DependencyLifeStyle.Transient);
         }

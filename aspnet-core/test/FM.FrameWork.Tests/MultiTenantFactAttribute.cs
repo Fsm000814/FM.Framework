@@ -6,7 +6,7 @@ namespace FM.FrameWork.Tests
     {
         public MultiTenantFactAttribute()
         {
-            if (!FrameWorkConsts.MultiTenancyEnabled)
+            if (!FMFrameWorkConsts.MultiTenancyEnabled)
             {
                 Skip = "MultiTenancy is disabled.";
             }

@@ -3,6 +3,7 @@ using Abp.Domain.Entities.Auditing;
 using Abp.Timing;
 
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace FM.FrameWork.Entities.Auditing
 {
@@ -21,7 +22,19 @@ namespace FM.FrameWork.Entities.Auditing
         /// <summary>
         /// 该实体的创建者。
         /// </summary>
-        public virtual string CreatorUserId { get; set; }
+        public virtual long? CreatorUserId { get; set; }
+
+        /// <summary>
+        /// 创建人名称
+        /// </summary>
+        [MaxLength(32)]
+        public virtual string CreatorUserName { get; set; }
+
+        /// <summary>
+        /// Token
+        /// </summary>
+        [MaxLength(32)]
+        public string ConcurrencyToken { get; set; }
 
         /// <summary>
         /// 默认赋值创建时间为当前时间

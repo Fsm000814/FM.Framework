@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Abp.Domain.Entities;
+
+using FM.FrameWork.Entities.Auditing;
+
+using Microsoft.EntityFrameworkCore;
 
 using System;
 using System.Collections.Generic;
@@ -13,7 +17,7 @@ namespace FM.FrameWork.UomModule.UOMDefinition
     /// 度量单位
     /// </summary>
     [Comment("度量单位")]
-    public class UOM
+    public class UOM : FullAuditedEntity<Guid>,IMayHaveTenant
     {
         public const int MaxUOMNameLength = 200;
         public const int MaxDescriptionLength = 1000;
@@ -24,5 +28,10 @@ namespace FM.FrameWork.UomModule.UOMDefinition
         [Required]
         [Comment("度量单位的名称，不能重复")]
         public string UOMName { get; set; }
+
+        /// <summary>
+        /// 租户
+        /// </summary>
+        public int? TenantId { get; set; }
     }
 }

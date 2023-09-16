@@ -18,6 +18,7 @@
     <PackageReference Include="Abp.AutoMapper" Version="8.1.0" />
     <PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="8.1.0" />
     <PackageReference Include="Castle.Windsor.MsDependencyInjection" Version="3.4.0" />
+    <PackageReference Include="EFCore.BulkExtensions" Version="7.1.6" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UomModule\UOMDefinition\Authorization\" />

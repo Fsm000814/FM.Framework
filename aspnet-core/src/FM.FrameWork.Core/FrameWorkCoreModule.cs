@@ -1,4 +1,5 @@
-﻿using Abp.Localization;
+﻿using Abp.Dependency;
+using Abp.Localization;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Runtime.Security;
@@ -8,6 +9,8 @@ using Abp.Zero.Configuration;
 using FM.FrameWork.Authorization.Roles;
 using FM.FrameWork.Authorization.Users;
 using FM.FrameWork.Configuration;
+using FM.FrameWork.Extenions;
+using FM.FrameWork.FMFrameWorkLazy.FMFrameWorkLazyDefinition;
 using FM.FrameWork.Localization;
 using FM.FrameWork.MultiTenancy;
 using FM.FrameWork.Timing;
@@ -40,6 +43,8 @@ namespace FM.FrameWork
             
             Configuration.Settings.SettingEncryptionConfiguration.DefaultPassPhrase = FrameWorkConsts.DefaultPassPhrase;
             SimpleStringCipher.DefaultPassPhrase = FrameWorkConsts.DefaultPassPhrase;
+
+            IocManager.Register(typeof(IFMFrameWorkLazy<>), typeof(FMFrameWorkLazy<>), DependencyLifeStyle.Transient);
         }
 
         public override void Initialize()

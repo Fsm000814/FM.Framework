@@ -4,6 +4,7 @@ using FM.FrameWork.Authorization.Roles;
 using FM.FrameWork.Authorization.Users;
 using FM.FrameWork.MultiTenancy;
 using FM.FrameWork.UomModule.UOMDefinition;
+using FM.FrameWork.Database;
 
 namespace FM.FrameWork.EntityFrameworkCore
 {
@@ -21,7 +22,28 @@ namespace FM.FrameWork.EntityFrameworkCore
 
         public override void ModelCreating(ModelBuilder modelBuilder)
         {
+            #region 分数据库处理
 
+            switch (DatabaseInfo.Instance.DatabaseType)
+            {
+                case DatabaseTypeEnum.PostgreSQL:
+                    break;
+
+                case DatabaseTypeEnum.MySQL:
+                    break;
+
+                case DatabaseTypeEnum.Oracle:
+                    //modelBuilder.LowCodeOracleEntityMapper();
+                    //modelBuilder.MedProUseOracleTableMapping();
+                    //modelBuilder.MedProOracleEntityMapper();
+                    //modelBuilder.MedProEntityMapping();
+                    break;
+
+                case DatabaseTypeEnum.SqlServer:
+                    break;
+            }
+
+            #endregion 分数据库处理
         }
 
         /// <summary>

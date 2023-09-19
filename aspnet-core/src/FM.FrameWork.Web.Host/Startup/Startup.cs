@@ -47,7 +47,7 @@ namespace FM.FrameWork.Web.Host.Startup
         }
 
         /// <summary>
-        /// 配置一些中间件，参照ZD的提交记录
+        /// 配置一些中间件。
         /// </summary>
         private void InitWebConsts()
         {

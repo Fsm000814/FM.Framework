@@ -10,8 +10,16 @@ using Abp.Runtime.Security;
 
 namespace FM.FrameWork.Web.Host.Startup
 {
+    /// <summary>
+    /// 身份验证配置程序
+    /// </summary>
     public static class AuthConfigurer
     {
+        /// <summary>
+        /// 配置
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
         public static void Configure(IServiceCollection services, IConfiguration configuration)
         {
             if (bool.Parse(configuration["Authentication:JwtBearer:IsEnabled"]))
@@ -25,22 +33,22 @@ namespace FM.FrameWork.Web.Host.Startup
 
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        // The signing key must match!
+                        // 签名密钥必须匹配！
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["Authentication:JwtBearer:SecurityKey"])),
 
-                        // Validate the JWT Issuer (iss) claim
+                        // 验证JWT发行人（ISS）声明
                         ValidateIssuer = true,
                         ValidIssuer = configuration["Authentication:JwtBearer:Issuer"],
 
-                        // Validate the JWT Audience (aud) claim
+                        // 验证JWT（AUD）
                         ValidateAudience = true,
                         ValidAudience = configuration["Authentication:JwtBearer:Audience"],
 
-                        // Validate the token expiry
+                        // 验证令牌过期
                         ValidateLifetime = true,
 
-                        // If you want to allow a certain amount of clock drift, set that here
+                        // 如果你想允许一定量的时间偏移，在这里设置
                         ClockSkew = TimeSpan.Zero
                     };
 
@@ -52,8 +60,11 @@ namespace FM.FrameWork.Web.Host.Startup
             }
         }
 
-        /* This method is needed to authorize SignalR javascript client.
-         * SignalR can not send authorization header. So, we are getting it from query string as an encrypted text. */
+        /// <summary>
+        /// 此方法是授权SignalR javascript客户端所必需的。SignalR无法发送授权标头。所以，我们从查询字符串中获得它作为加密文本。
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         private static Task QueryStringTokenResolver(MessageReceivedContext context)
         {
             if (!context.HttpContext.Request.Path.HasValue ||

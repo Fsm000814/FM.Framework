@@ -40,7 +40,7 @@ namespace FM.FrameWork.Web.Host.Startup
         public override void PreInitialize()
         {
             //配置审计日志开关
-            Configuration.Auditing.IsEnabled = false; 
+            Configuration.Auditing.IsEnabled = true; 
         }
     }
 }

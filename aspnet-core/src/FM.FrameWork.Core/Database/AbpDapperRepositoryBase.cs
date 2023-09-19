@@ -3,25 +3,32 @@ using Abp.Domain.Entities;
 using Abp.Domain.Repositories;
 using Abp.MultiTenancy;
 using Abp.Reflection.Extensions;
+
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FM.FrameWork.Database
 {
+    /// <summary>
+    /// Abp Dapper存储库基类
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    /// <typeparam name="TPrimaryKey"></typeparam>
     public abstract class AbpDapperRepositoryBase<TEntity, TPrimaryKey> : IDapperRepository<TEntity, TPrimaryKey>, IRepository, ITransientDependency where TEntity : class, IEntity<TPrimaryKey>
     {
         public static MultiTenancySides? MultiTenancySide { get; private set; }
 
         static AbpDapperRepositoryBase()
         {
+            //该方法会在实体类型及其所有基类中查找是否存在 MultiTenancySideAttribute 标记属性。如果找到，则返回该属性的实例；如果未找到，则返回 null。
             MultiTenancySideAttribute singleAttributeOfTypeOrBaseTypesOrNull = typeof(TEntity).GetSingleAttributeOfTypeOrBaseTypesOrNull<MultiTenancySideAttribute>();
+            // 如果获取到了 MultiTenancySideAttribute 属性
             if (singleAttributeOfTypeOrBaseTypesOrNull != null)
             {
+                // 设置 MultiTenancySide 为该属性的 Side 值
                 MultiTenancySide = singleAttributeOfTypeOrBaseTypesOrNull.Side;
             }
         }

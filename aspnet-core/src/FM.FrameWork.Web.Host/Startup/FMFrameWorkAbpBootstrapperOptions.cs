@@ -6,16 +6,19 @@ using System;
 
 namespace FM.FrameWork.Web.Host.Startup
 {
+    /// <summary>
+    /// Abp引导程序选项
+    /// </summary>
     public class FMFrameWorkAbpBootstrapperOptions
     {
-        //
-        // 摘要:
-        //     abp启动配置选项
+        /// <summary>
+        /// abp启动配置选项
+        /// </summary>
         public Action<AbpBootstrapperOptions> AbpOptionsAction { get; set; }
 
-        //
-        // 摘要:
-        //     abp配置asp.net core服务之后
+        /// <summary>
+        /// abp配置asp.net core服务之后
+        /// </summary>
         public Action<IServiceCollection> AbpConfigureAspNetCoreAfter { get; set; }
     }
 }
